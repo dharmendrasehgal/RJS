@@ -1,17 +1,17 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React from 'react';
 
-const TreeNode = React.createClass({
-	propTypes: {
-		collapsed: PropTypes.bool,
-		defaultCollapsed: PropTypes.bool
-	  },
-	getInitialState: function(){
-		return {
+class TreeNode extends React.Component{
+	constructor(props){
+		super(props);
+		this.state = {
 			collapsed: !this.props.defaultCollapsed
 		}
-	},
-	render: function(){
+		this.toggle = this.toggle.bind(this);
+	};
+	toggle(e){
+		this.setState({collapsed: !this.state.collapsed});
+	}
+	render(){
 		var childNodes;
 		if(this.props.node.items != null){
 			childNodes = this.props.node.items.map(
@@ -45,10 +45,13 @@ const TreeNode = React.createClass({
 				</ul>
 			</div>
 		);
-	},
-	toggle: function(){
-		this.setState({collapsed: !this.state.collapsed});
 	}
-});
+}
 
-module.exports = TreeNode;
+
+TreeNode.propTypes = {
+	collapsed: React.PropTypes.bool,
+	defaultCollapsed: React.PropTypes.bool
+}
+
+export default TreeNode;

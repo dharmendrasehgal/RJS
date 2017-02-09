@@ -1,0 +1,56 @@
+#container {
+  display: inline-block;
+  float: left;
+  text-align:left;
+  margin-left: 20px;
+  line-height: 2rem;
+  .tree-view{
+	li,>.node{
+		position: relative;
+		list-style-type: none;
+	}
+  }
+}
+
+
+#container,.clildNodes{
+	>.tree-view{		
+		>.node{
+			>.arrowImg{
+				&:after{
+					content: '';
+					position: absolute;
+					width:0;
+					height:0;
+					border-top: 7px solid black;
+					border-left: 7px solid transparent;
+					border-right: 7px solid transparent;
+					left:-16px;
+					margin-top:6px;
+				}
+			}
+		}
+		&.collapsed{
+			>.node{
+				>.arrowImg{
+					&:after{
+						border-top: 7px solid transparent;
+						border-bottom: 7px solid transparent;
+						border-left: 7px solid black;
+						left:-13px;
+					}
+				}
+			}
+		}
+		.nodeItem:after{
+			content: '';
+			position: absolute;
+			width:4px;
+			height:4px;
+			background: gray;
+			border-radius: 1px;
+			left:-13px;
+			margin-top:-16px;
+		}
+	}
+}
